@@ -16,7 +16,7 @@ const ArticleList = (props) => {
         
     },[]);
 
-console.log(articles)
+//console.log(articles)
    
 
     //[]=sadece componentdidmount

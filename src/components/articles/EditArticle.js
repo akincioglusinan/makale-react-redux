@@ -17,7 +17,7 @@ const EditArticle = (props) => {
     
 
     //console.log(props.match.params.id)
-    console.log(article)
+    
     return (
             <div className="bg-secondary">
                 <Container>
@@ -28,6 +28,7 @@ const EditArticle = (props) => {
                                 <ArticleForm
                                 {...article}
                                     onSubmit={(article) => {
+                                        console.log(article);
                                         dispatch(editArticle(props.match.params.id, article));
                                         props.history.push('/articles');
                                     }}

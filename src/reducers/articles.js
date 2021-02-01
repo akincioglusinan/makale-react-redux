@@ -58,8 +58,8 @@ const articlesReducer = (state = articleState, action) => {
     case 'REMOVE_ARTICLE':
       return {
         ...state,
-        message:action.payload,
-        articles:state.articles.filter(({ id }) => {
+        message: action.payload,
+        articles: state.articles.filter(({ id }) => {
           return id !== action.id
         })
       }
@@ -67,9 +67,12 @@ const articlesReducer = (state = articleState, action) => {
       return { ...state, message: action.payload }
 
     case 'EDIT_ARTICLE':
-      state.message=action.payload
-      //console.log(action.payload)
+      console.log("reducer article")
+      action.id = action.id.toString();
+      state.message = action.payload;
+
       return state.map((article) => {
+        console.log(action.article)
         if (article.id === action.id) {
           return {
             ...article,

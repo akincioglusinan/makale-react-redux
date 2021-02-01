@@ -4,7 +4,8 @@ import BodyJumbotron from './home/BodyJumbotron'
 import UICarousel from './home/UICarousel'
 import ListGroupRight from './home/ListGroupRight'
 import BodyCardDeck from './home/BodyCardDeck'
-import UserPanel from './home/UserPanel'
+import UserPanel from './auth/UserPanel'
+
 
 const Home = () => {
     return (

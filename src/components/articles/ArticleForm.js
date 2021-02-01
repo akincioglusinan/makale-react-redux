@@ -2,22 +2,32 @@ import React, { useState } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
 
 const ArticleForm = (props) => {
-    //const [content, setContent] = useState(props.article ? props.article.content : '')
-    //const [title, setTitle]=useState(props.article ? props.article.title : '')
-    //const [categoryId, setCategory]=useState(props.article ? props.article.categoryId : 1)
     const [error, setError] = useState(props.message ? props.message : '')
-    console.log(props.article)
-    const [article, setArticle] = useState({
-        title: props.article ? props.article.title : '',
-        content: props.article ? props.article.content : '',
-        categoryId: props.article ? props.article.categoryId : 1,
+
+    const [article, setArticle] = useState(
+        props.article 
+    ? 
+    { 
+        id: props.article.id, 
+        title: props.article.title, 
+        content: props.article.content,
+        categoryId:props.article.categoryId, 
+        userId: props.article.userId, 
+        createdDateTime: props.article.createdDateTime
+    } 
+        : 
+    { 
+        title: '', 
+        content: '',
+        categoryId: 1,
         userId: 1,
         createdDateTime: new Date()
-    })
+    }
+    )
 
     const handleOnChange = (e) => {
-        console.log(typeof e.target.value)
-        setArticle({ ...article, [e.target.name]: [e.target.name] == "categoryId" ? parseInt(e.target.value) : e.target.value })
+        //console.log(typeof e.target.value)
+        setArticle({ ...article, [e.target.name] : e.target.value })
         //console.log(e.target.value, e.target.name, article)
     }
 
@@ -33,12 +43,10 @@ const ArticleForm = (props) => {
                 return { ...prevState, categoryId: parseInt(prevState.categoryId) };
             })
             props.onSubmit(article)
-            console.log('submitted.')
+            console.log(article, 'submitted.')
         }
     }
 
-
-    // render() {
     return (
         <div>
 
@@ -88,7 +96,6 @@ const ArticleForm = (props) => {
             </Form>
         </div>
     )
-    // }
 }
 
 export default ArticleForm
