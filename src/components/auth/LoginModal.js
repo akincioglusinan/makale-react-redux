@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
-import Login from './Login';
+import LoginForm from './LoginForm';
 import { login} from "../../actions/auth";
 
 const MyVerticallyCenteredModal=(props) =>{
@@ -20,7 +20,7 @@ const MyVerticallyCenteredModal=(props) =>{
           </Modal.Title>
         </Modal.Header>
         <Modal.Body  border="light" className="bg-light">
-          <Login onSubmit={(email, password)=>{dispatch(login(email, password))}}/>
+          <LoginForm onSubmit={(email, password)=>{dispatch(login(email, password))}}/>
         </Modal.Body>
         <Modal.Footer>
           <Button size="sm" className="btn btn-danger" onClick={props.onHide}>Kapat</Button>

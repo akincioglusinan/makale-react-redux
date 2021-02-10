@@ -6,9 +6,7 @@ const ArticleListItem=({id, title}) => {
     //const tit=slugify(title)
     return (
         <>
-           <li key={id}>
                 <Link to={`/article/${id}/${Slugify(title)}`}>{title}</Link>
-        </li> 
         </>
     )
 }

@@ -1,3 +1,19 @@
+import {
+  GET_ARTICLES_START,
+  GET_ARTICLES_SUCCESS,
+  GET_ARTICLES_ERROR,
+  GET_ARTICLE_START,
+  GET_ARTICLE_SUCCESS,
+  GET_ARTICLE_ERROR,
+  ADD_ARTICLE,
+  ADD_ARTICLE_ERROR,
+  REMOVE_ARTICLE,
+  REMOVE_ARTICLE_ERROR,
+  EDIT_ARTICLE,
+  EDIT_ARTICLE_ERROR
+
+} from "../actions/types";
+
 const articleState = {
   isLoading: false,
   articles: [],
@@ -7,41 +23,41 @@ const articleState = {
 
 const articlesReducer = (state = articleState, action) => {
   switch (action.type) {
-    case 'GET_ARTICLES_START':
+    case GET_ARTICLES_START:
       return {
         ...state,
         isLoading: true,
         message: ''
       }
-    case 'GET_ARTICLES_SUCCESS':
+    case GET_ARTICLES_SUCCESS:
       return {
         ...state,
         articles: action.payload,
         isLoading: false
       }
-    case 'GET_ARTICLES_ERROR': return {
+    case GET_ARTICLES_ERROR: return {
       ...state,
       message: action.payload,
       isLoading: false
     }
-    case 'GET_ARTICLE_START':
+    case GET_ARTICLE_START:
       return {
         ...state,
         isLoading: true,
         message: ''
       }
-    case 'GET_ARTICLE_SUCCESS':
+    case GET_ARTICLE_SUCCESS:
       return {
         ...state,
         article: action.payload,
         isLoading: false
       }
-    case 'GET_ARTICLE_ERROR': return {
+    case GET_ARTICLE_ERROR: return {
       ...state,
       message: action.payload,
       isLoading: false
     }
-    case 'ADD_ARTICLE':
+    case ADD_ARTICLE:
       console.log(state)
       return {
         ...state,
@@ -49,13 +65,13 @@ const articlesReducer = (state = articleState, action) => {
         articles: [...state.articles, action.article]
       }
 
-    case 'ADD_ARTICLE_ERROR':
+    case ADD_ARTICLE_ERROR:
       return {
         ...state,
         message: action.payload
       }
 
-    case 'REMOVE_ARTICLE':
+    case REMOVE_ARTICLE:
       return {
         ...state,
         message: action.payload,
@@ -63,26 +79,31 @@ const articlesReducer = (state = articleState, action) => {
           return id !== action.id
         })
       }
-    case 'REMOVE_ARTICLE_ERROR':
+    case REMOVE_ARTICLE_ERROR:
       return { ...state, message: action.payload }
 
-    case 'EDIT_ARTICLE':
-      console.log("reducer article")
-      action.id = action.id.toString();
-      state.message = action.payload;
-
-      return state.map((article) => {
-        console.log(action.article)
-        if (article.id === action.id) {
-          return {
-            ...article,
-            ...action.article
+    case EDIT_ARTICLE:
+      return {
+        ...state,
+        message: action.payload,
+        articles: state.articles.map((index) => {
+          if (index.id == action.id) {
+            return {
+              ...action.article
+            }
+          } else {
+            return index
           }
         }
-        else {
-          return article;
-        }
-      })
+        )
+      }
+
+    case EDIT_ARTICLE_ERROR:
+      return {
+        ...state,
+        message: action.payload
+      }
+
     default:
       return state;
   }

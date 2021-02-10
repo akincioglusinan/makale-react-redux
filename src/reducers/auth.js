@@ -35,9 +35,11 @@ const authReducer= (state = initialState, action) => {
 
   switch (type) {
     case REGISTER_SUCCESS:
+      console.log(payload.user, 'register')
       return {
         ...state,
-        isLoggedIn: false,
+        isLoggedIn: true,
+        user: payload.user,
       };
     case REGISTER_FAIL:
       return {
@@ -45,6 +47,7 @@ const authReducer= (state = initialState, action) => {
         isLoggedIn: false,
       };
     case LOGIN_SUCCESS:
+      console.log(payload.user);
       return {
         ...state,
         isLoggedIn: true,

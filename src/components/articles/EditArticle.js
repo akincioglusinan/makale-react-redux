@@ -10,10 +10,10 @@ const EditArticle = (props) => {
     const article = useSelector((state) => state.articles)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getArticle(props.match.params.id));
+    // useEffect(() => {
+    //     dispatch(getArticle(props.match.params.id));
 
-    }, [])
+    // }, [])
     
 
     //console.log(props.match.params.id)
@@ -28,7 +28,6 @@ const EditArticle = (props) => {
                                 <ArticleForm
                                 {...article}
                                     onSubmit={(article) => {
-                                        console.log(article);
                                         dispatch(editArticle(props.match.params.id, article));
                                         props.history.push('/articles');
                                     }}

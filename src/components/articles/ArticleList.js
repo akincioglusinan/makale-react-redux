@@ -8,25 +8,26 @@ import SpinnerUI from '../tools/SpinnerUI'
 const ArticleList = (props) => {
     // const [artic, setArticles]=useState([]);
 
-    const articles = useSelector((state) => state.articles)
-    const dispatch=useDispatch();
-    
-    useEffect(() => {
-       dispatch(getArticles());
-        
-    },[]);
 
+    // const articles = useSelector((state) => state.articles)
+    // const dispatch=useDispatch();
+    
+    // useEffect(() => {
+    //    dispatch(getArticles());
+        
+    // },[]);
 //console.log(articles)
    
 
     //[]=sadece componentdidmount
+    console.log(props.articles)
     return (
         <>
-            {articles.isLoading ?
+            {props.isLoading ?
                 <SpinnerUI />
                 :
                 <div>
-                {articles.message && <Alert variant="success"><p className="text-center"><b>{articles.message}</b></p></Alert>} 
+                {props.message && <Alert variant="success"><p className="text-center"><b>{props.message}</b></p></Alert>} 
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -38,7 +39,7 @@ const ArticleList = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {articles.articles.map((article, index) => {
+                        {props.articles.map((article, index) => {
                             const wc = (article.content.match(/ /g) || []).length;
                             return <tr key={index}>
                                 <td>{index + 1}</td>

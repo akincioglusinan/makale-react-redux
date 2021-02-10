@@ -29,7 +29,7 @@ const AppRouter = () => {
                 <Route exact path="/article/:id/:title" component={ArticleDetails} />
                 <Route path="/create" component={AddArticle} />
                 <Route path="/edit/:id" component={EditArticle} />
-                <Route path="/login" component={Login} />
+                {/* <Route path="/login" component={Login} /> */}
                 <Route path="/register" component={Register} />
                 <Route component={NotFoundPage} />
             </Switch>

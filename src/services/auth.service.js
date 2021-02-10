@@ -15,16 +15,18 @@ class AuthService {
 
     logout() {
         localStorage.removeItem("user");
-        localStorage.removeItem("userDetail");
     }
 
-    register(firstname, lastname, email, password) {
+    register(user) {
         return api()
-            .post('/auth/register', {
-                firstname,
-                lastname,
-                email,
-                password
+            .post('/auth/register', user)
+            .then((response) => {
+                console.log(response, 'service')
+                if (response.data.token) {
+                    localStorage.setItem("user", JSON.stringify(response.data));
+                }
+
+                return response.data;
             });
     }
 }
